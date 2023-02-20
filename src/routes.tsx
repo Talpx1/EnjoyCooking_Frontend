@@ -1,11 +1,12 @@
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/backoffice/Dashboard';
 import ErrorPage from './pages/ErrorPage';
 import { awardLoader, awardsLoader } from './core/loaders/award';
 import BackofficeLayout from './components/layouts/backoffice/BackofficeLayout';
 import PublicLayout from './components/layouts/public/PublicLayout';
 import { Route } from 'react-router-dom';
-import AwardsIndex from './pages/Awards/index';
-import AwardsCreate from './pages/Awards/create';
+import AwardsIndex from './pages/backoffice/award/index';
+import AwardsCreate from './pages/backoffice/award/create';
+import Home from './pages/public/Home';
 
 export const routes = (
     <>
@@ -20,6 +21,9 @@ export const routes = (
         </Route>
 
         {/* public */}
-        <Route path="/" element={<PublicLayout />} errorElement={<ErrorPage />}></Route>
+        <Route path="/" element={<PublicLayout />} errorElement={<ErrorPage />}>
+            {/* home */}
+            <Route index element={<Home />} />
+        </Route>
     </>
 );

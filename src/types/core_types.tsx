@@ -12,4 +12,16 @@ type PaginatedData<T> = {
     prev_page_url: string|null,
     to: number,
     total: number,
-}
+};
+
+type ApiAction = 'index'| 'show' | 'store' | 'update' | 'delete';
+
+type ApiFetchCall = {
+    entity:string, 
+    entityId?: number, 
+    action: ApiAction,
+    data?: object,
+    hasAttachment?: boolean;
+};
+
+type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
