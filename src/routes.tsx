@@ -1,13 +1,15 @@
 import Dashboard from './pages/Dashboard';
-import ErrorPage from './error-page';
+import ErrorPage from './pages/ErrorPage';
 import Awards from './pages/Awards';
-import App from './App';
 import { awardsLoader } from './core/loaders/award';
+import BackofficeLayout from './components/layouts/backoffice/BackofficeLayout';
+import PublicLayout from './components/layouts/public/PublicLayout';
 
 export const routes = [
+    //backoffice
     {
-        path: "/",
-        element: <App />,
+        path: "/backoffice",
+        element: <BackofficeLayout />,
         errorElement: <ErrorPage />,
         children:[
             {
@@ -21,5 +23,11 @@ export const routes = [
             },
         ]
     },
-    
+    //public
+    {
+        path: "/",
+        element: <PublicLayout />,
+        errorElement: <ErrorPage />,
+        children:[]
+    },
 ]
