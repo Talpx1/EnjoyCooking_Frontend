@@ -7,6 +7,7 @@ import { Route } from 'react-router-dom';
 import AwardsIndex from './pages/backoffice/award/index';
 import AwardsCreate from './pages/backoffice/award/create';
 import Home from './pages/public/Home';
+import { OAuthPkceCallbackComponent } from './services/auth';
 
 export const routes = (
     <>
@@ -15,7 +16,8 @@ export const routes = (
             {/* dashboard */}
             <Route index element={<Dashboard />} />
             {/* awards */}
-            <Route path="award" element={<AwardsIndex />} loader={awardsLoader} />
+            <Route path="award" element={<AwardsIndex />}  />
+            {/* loader={awardsLoader} */}
             <Route path="award/create" element={<AwardsCreate />} />
             <Route path="award/edit/:id" element={<AwardsCreate />} loader={ ({ params }) => awardLoader(params.id)}/>
         </Route>
@@ -24,6 +26,7 @@ export const routes = (
         <Route path="/" element={<PublicLayout />} errorElement={<ErrorPage />}>
             {/* home */}
             <Route index element={<Home />} />
+            <Route path="oauthcallback" element={<OAuthPkceCallbackComponent />} />
         </Route>
     </>
 );

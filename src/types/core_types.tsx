@@ -16,12 +16,34 @@ type PaginatedData<T> = {
 
 type ApiAction = 'index'| 'show' | 'store' | 'update' | 'delete';
 
-type ApiFetchCall = {
+type CoreFetchCall = {
     entity:string, 
     entityId?: number, 
-    action: ApiAction,
+    action?: ApiAction,
     data?: object,
-    hasAttachment?: boolean;
+    asForm?: boolean,
+    isApi?: boolean,
+    forceMethod?: HttpMethod,
+    asClient?: boolean,
+    queryStringParams?: object,
 };
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+
+type CorePasswordLoginPayload = {
+    grant_type: "password",
+    client_id: number,
+    client_secret: string,
+    username: string,
+    password: string,
+    scope: string
+};
+
+type CoreClientLoginPayload = {
+    grant_type: "client_credentials",
+    client_id: number,
+    client_secret: string,
+    scope: string
+};
+
+type CoreLoginPayload = CorePasswordLoginPayload | CoreClientLoginPayload;
