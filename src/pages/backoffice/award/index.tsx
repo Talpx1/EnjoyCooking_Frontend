@@ -1,8 +1,8 @@
 import { useLoaderData, Link } from 'react-router-dom';
 import Button from '../../../components/ui/Button';
 import { FaEdit, FaTrash } from 'react-icons/fa';
-import { fetchCore } from '../../../core/core';
-import { useAuth } from '../../../contexts/AuthContext';
+import { fetchCore } from '../../../services/core/core';
+import useAuth from '../../../hooks/useAuth';
 
 async function deleteAward(award: Award){
     const confirmDelete = confirm(`Are you sure you want to delete the award "${award.name}"?`);
@@ -20,14 +20,14 @@ async function deleteAward(award: Award){
 
 export default function AwardsIndex() {
 
-    const [user, userLogin, userLogout] = useAuth() as unknown as any[];
+    const [userLogin, userLogout] = useAuth();
 
-
-    // const awards: PaginatedData<Award> = useLoaderData() as PaginatedData<Award>;
-    const awards = {data:{}};
+    const awards: PaginatedData<Award> = useLoaderData() as PaginatedData<Award>;
+    
     return (
         <>
-            <Button type='button' onClick={async () => userLogin('admin@enjoy.cooking', 'admin')}><FaTrash /></Button>
+            <Button type='button' onClick={async () => userLogin()}><FaTrash /></Button>
+            <Button type='button' onClick={userLogout}><FaTrash /></Button>
             <Link to="create"><Button type="button">Add Award</Button></Link>
             <div>
                 { awards.data.length > 0 ? awards.data.map((award) => {

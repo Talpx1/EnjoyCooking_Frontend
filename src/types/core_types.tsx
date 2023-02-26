@@ -24,26 +24,8 @@ type CoreFetchCall = {
     asForm?: boolean,
     isApi?: boolean,
     forceMethod?: HttpMethod,
-    asClient?: boolean,
+    withAuth?: boolean,
     queryStringParams?: object,
 };
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-
-type CorePasswordLoginPayload = {
-    grant_type: "password",
-    client_id: number,
-    client_secret: string,
-    username: string,
-    password: string,
-    scope: string
-};
-
-type CoreClientLoginPayload = {
-    grant_type: "client_credentials",
-    client_id: number,
-    client_secret: string,
-    scope: string
-};
-
-type CoreLoginPayload = CorePasswordLoginPayload | CoreClientLoginPayload;

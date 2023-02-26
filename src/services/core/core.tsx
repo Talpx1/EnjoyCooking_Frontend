@@ -1,5 +1,5 @@
-import { clientLogin, clientTokenExists, userTokenExists } from "../services/auth";
-import { objToQueryString } from "../services/url";
+import { userTokenExists } from "../auth/auth";
+import { objToQueryString } from "../url";
 
 export async function fetchCore({
     entity, 
@@ -9,20 +9,18 @@ export async function fetchCore({
     asForm = false, 
     isApi = true,
     forceMethod = undefined,
-    asClient = false,
+    withAuth = true,
     queryStringParams = undefined
 }: CoreFetchCall){
-
-    if(asClient && !clientTokenExists()) await clientLogin()
     
     if(action===undefined && forceMethod===undefined) throw new Error("Error fetching core: action and forceMethod can't be both undefined!");
 
-    const url = buildUrl(isApi, entity, entityId, queryStringParams);
+    const url = buildUrl(isApi, entity, withAuth, entityId, queryStringParams);
 
     const method = action!==undefined ? getVerbFromAction(action) : forceMethod;
     if(method===undefined) throw new Error("Error fetching core: method is undefined!");
 
-    const options = buildOptions(method, asForm, data, asClient);
+    const options = buildOptions(method, asForm, data, withAuth);
 
     const response = await fetch(url, options);
     if(!response.ok) throw new Error(`${response.status}: ${response.statusText}`);
@@ -31,7 +29,7 @@ export async function fetchCore({
     return result;
 }
 
-function buildOptions(method: HttpMethod, asForm: boolean, data: object, asClient: boolean): RequestInit{
+function buildOptions(method: HttpMethod, asForm: boolean, data: object, withAuth: boolean): RequestInit{
     let options: RequestInit = {
         method: method,
         mode: 'cors',
@@ -39,7 +37,7 @@ function buildOptions(method: HttpMethod, asForm: boolean, data: object, asClien
         headers: {
             'Content-Type': !asForm ? 'application/json' : 'application/x-www-form-urlencoded',
             'Accept': 'application/json',
-            'Authorization': getAuthorizationToken(asClient),
+            'Authorization': (withAuth && getAuthorizationToken()) || '',
         },
     };
 
@@ -50,17 +48,13 @@ function buildOptions(method: HttpMethod, asForm: boolean, data: object, asClien
     return options;
 }
 
-function getAuthorizationToken(asClient: boolean){
-    if(asClient){
-        return  clientTokenExists() ? `Bearer ${sessionStorage.getItem('EC_CLIENT_ACCESS_TOKEN')}` : '';
-    }
-
+function getAuthorizationToken(){
     return userTokenExists() ? `Bearer ${localStorage.getItem('EC_ACCESS_TOKEN')}` : '';
 }
 
-function buildUrl(isApi: boolean, entity: string, entityId?: number, queryStringParams?: object): string{
+function buildUrl(isApi: boolean, entity: string, withAuth: boolean,  entityId?: number, queryStringParams?: object): string{
     let url = import.meta.env.EC_CORE_URL;
-    if(isApi) url = `${url}/api`;
+    if(isApi) url = `${url}/api${(!withAuth && '/guest') || ''}`;
     url = `${url}/${entity}`;
     if(entityId !== undefined) url = `${url}/${entityId}`;
     if(queryStringParams !== undefined) url = `${url}?${objToQueryString(queryStringParams)}`;
@@ -73,11 +67,8 @@ function getVerbFromAction(action: ApiAction): HttpMethod{
         case "show":
         default:
             return 'GET';
-
         case 'store': return 'POST';
-
         case 'update': return 'PUT';
-
         case 'delete': return 'DELETE'
     }
 }

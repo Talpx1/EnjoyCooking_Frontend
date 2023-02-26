@@ -4,7 +4,7 @@ export async function awardsLoader(){
     return await fetchCore({
         entity: 'award',
         action: 'index',
-        asClient: true
+        withAuth: false
     });
 }
 
@@ -13,6 +13,6 @@ export async function awardLoader(id: any){
         entity: 'award',
         entityId: id,
         action:'show',
-        asClient: true
+        withAuth: false
     });
 }
