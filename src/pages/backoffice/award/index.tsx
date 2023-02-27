@@ -19,15 +19,10 @@ async function deleteAward(award: Award){
 }
 
 export default function AwardsIndex() {
-
-    const [userLogin, userLogout] = useAuth();
-
     const awards: PaginatedData<Award> = useLoaderData() as PaginatedData<Award>;
-    
+
     return (
         <>
-            <Button type='button' onClick={async () => userLogin()}><FaTrash /></Button>
-            <Button type='button' onClick={userLogout}><FaTrash /></Button>
             <Link to="create"><Button type="button">Add Award</Button></Link>
             <div>
                 { awards.data.length > 0 ? awards.data.map((award) => {

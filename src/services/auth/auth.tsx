@@ -1,5 +1,6 @@
 import pkceChallenge from 'pkce-challenge'
 import { objToQueryString } from '../url';
+import { fetchCore } from '../core/core';
 
 export function userLogin() {
     const {code_verifier, code_challenge} = pkceChallenge();
@@ -23,8 +24,12 @@ export function userLogin() {
     window.location.href = url;
 }
 
-export function cleanUserLogin(): void{
-    if(!userTokenExists()) return;
+export async function userLoginCleanup(){   
+    await fetchCore({
+        entity: 'user/oauth_access_tokens',
+        action: 'delete',
+    });
+
     localStorage.removeItem('EC_ACCESS_TOKEN');
     localStorage.removeItem('EC_REFRESH_TOKEN');
 }
