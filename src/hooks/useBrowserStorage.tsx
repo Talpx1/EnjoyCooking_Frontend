@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function useBrowserStorage<T>(key: string, initialValue: T, storageType: 'session'|'local') {
+export default function useBrowserStorage<T>(key: string, initialValue: T, storageType: 'session'|'local'): [T, Function, Function] {
 
     const storage = storageType === "session" ? window.sessionStorage : window.localStorage;
 
@@ -30,5 +30,5 @@ export default function useBrowserStorage<T>(key: string, initialValue: T, stora
 
     const clearValue = () => typeof window !== "undefined" && storage.removeItem(key);
 
-    return [storedValue, setValue, clearValue] as const;
+    return [storedValue, setValue, clearValue];
 }

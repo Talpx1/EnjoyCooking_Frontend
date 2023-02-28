@@ -1,4 +1,6 @@
-type PaginatedData<T> = {
+import { FormEncType, FormMethod } from "react-router-dom";
+
+export type PaginatedData<T> = {
     current_page: number,
     data: T[],
     first_page_url: string,
@@ -14,18 +16,19 @@ type PaginatedData<T> = {
     total: number,
 };
 
-type ApiAction = 'index'| 'show' | 'store' | 'update' | 'delete';
+export type ApiAction = 'index'| 'show' | 'store' | 'update' | 'delete';
 
-type CoreFetchCall = {
+export type CoreFetchCall = {
     entity:string, 
     entityId?: number, 
     action?: ApiAction,
-    data?: object,
-    asForm?: boolean,
+    data?: object | FormData,
+    contentType?: ContentTypes,
     isApi?: boolean,
-    forceMethod?: HttpMethod,
+    forceMethod?: FormMethod,
     withAuth?: boolean,
     queryStringParams?: object,
+    throwForValidationErrors?: boolean
 };
 
-type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+export type ContentTypes = FormEncType | 'application/json'

@@ -1,4 +1,4 @@
-type User = {
+export type User = {
     company_name: string|null,
     created_at: string,
     date_of_birth: string,

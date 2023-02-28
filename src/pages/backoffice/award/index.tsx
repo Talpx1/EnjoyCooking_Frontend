@@ -3,6 +3,9 @@ import Button from '../../../components/ui/Button';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { fetchCore } from '../../../services/core/core';
 import useAuth from '../../../hooks/useAuth';
+import { PaginatedData } from '../../../types/core_types';
+import { Award } from '../../../types/award_types';
+import DeleteButton from '../../../components/ui/DeleteButton';
 
 async function deleteAward(award: Award){
     const confirmDelete = confirm(`Are you sure you want to delete the award "${award.name}"?`);
@@ -29,8 +32,8 @@ export default function AwardsIndex() {
                     return (
                         <div className='flex' key={award.id}>
                             {award.name}
-                            <Link to={`edit/${award.id}`}><Button type='button'><FaEdit /></Button></Link>
-                            <Button type='button' onClick={() => deleteAward(award)}><FaTrash /></Button>
+                            <Link to={`${award.id}/edit`}><Button type='button'><FaEdit /></Button></Link>
+                            <DeleteButton entityId={award.id} confirmText={`Are you sure you want to delete the award "${award.name}"?`}><FaTrash /></DeleteButton>
                         </div>
                     )
                 }) : 'No Awards yet!' }

@@ -10,6 +10,9 @@ import Home from './pages/public/Home';
 import { OAuthPkceCallbackComponent } from './services/auth/OAuthPkceCallbackComponent';
 import RequireAuth from './services/auth/RequireAuth';
 import Login from './pages/public/auth/Login';
+import createAward from './services/core/actions/createAward';
+import editAward from './services/core/actions/editAward';
+import destroyAward from './services/core/actions/destroyAward';
 
 export const routes = (
     <>
@@ -19,8 +22,9 @@ export const routes = (
                 <Route index element={<Dashboard />} />
                 {/* awards */}
                 <Route path="award" element={<AwardsIndex />} loader={awardsLoader} />
-                <Route path="award/create" element={<AwardsCreate />} />
-                <Route path="award/edit/:id" element={<AwardsCreate />} loader={ ({ params }) => awardLoader(params.id)}/>
+                <Route path="award/create" element={<AwardsCreate />} action={createAward} />
+                <Route path="award/:id/edit" element={<AwardsCreate />} loader={ ({ params }) => awardLoader(params.id)} action={editAward}/>
+                <Route path="award/:id/destroy" action={destroyAward}/>
             </Route>
 
         {/* public */}

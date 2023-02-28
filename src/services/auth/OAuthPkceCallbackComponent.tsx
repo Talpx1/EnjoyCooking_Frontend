@@ -19,8 +19,8 @@ export function OAuthPkceCallbackComponent() {
             
             const response = await fetchCore({
                 entity: 'oauth/token',
-                asForm: true,
-                forceMethod: 'POST',
+                contentType: 'application/x-www-form-urlencoded',
+                forceMethod: 'post',
                 isApi: false,
                 withAuth: false,
                 data:{
