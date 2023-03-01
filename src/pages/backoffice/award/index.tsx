@@ -2,10 +2,10 @@ import { useLoaderData, Link } from 'react-router-dom';
 import Button from '../../../components/ui/Button';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { fetchCore } from '../../../services/core/core';
-import useAuth from '../../../hooks/useAuth';
 import { PaginatedData } from '../../../types/core_types';
 import { Award } from '../../../types/award_types';
 import DeleteButton from '../../../components/ui/DeleteButton';
+import Paginator from '../../../components/ui/Paginator';
 
 async function deleteAward(award: Award){
     const confirmDelete = confirm(`Are you sure you want to delete the award "${award.name}"?`);
@@ -38,6 +38,7 @@ export default function AwardsIndex() {
                     )
                 }) : 'No Awards yet!' }
             </div>
+            <Paginator paginatedData={awards} />
         </>
     );
 };
