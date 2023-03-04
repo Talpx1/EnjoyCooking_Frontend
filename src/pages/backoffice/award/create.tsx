@@ -2,9 +2,9 @@ import { useLoaderData } from 'react-router-dom';
 import FormInput from '../../../components/form/FormInput';
 import { Award } from '../../../types/award_types';
 import Button from '../../../components/ui/Button';
-import FormErrorsProvider from '../../../contexts/FormErrorsContext';
 import Form from '../../../components/form/Form';
 import FormImageInput from '../../../components/form/FormImageInput';
+import BackButton from '../../../components/ui/BackButton';
 
 export default function AwardsCreate() {
     const award: Award = useLoaderData() as Award;
@@ -12,6 +12,8 @@ export default function AwardsCreate() {
 
     return (
         <>
+            <BackButton />
+
             {isEdit ? <h1>Edit Award</h1> : <h1>Create Award</h1>}
             <Form method='post' encType='multipart/form-data'>
                 <FormInput name='name' type='text' label='Name' defaultValue={isEdit ? award.name : ''}/>

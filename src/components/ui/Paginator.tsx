@@ -10,7 +10,7 @@ export default function Paginator({paginatedData}: {paginatedData: PaginatedData
     console.log(paginatedData)
 
     return (
-        <div className="flex">
+        <div className="flex gap-2 items-center">
             
             {/* first page */}
             <Form>

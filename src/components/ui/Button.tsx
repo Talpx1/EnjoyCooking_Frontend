@@ -1,12 +1,16 @@
-import { ButtonHTMLAttributes, MouseEventHandler } from "react";
+import { ButtonHTMLAttributes } from "react";
 
 export default function Button(props: ButtonHTMLAttributes<HTMLButtonElement>) {
-    
-    const {className: _, ...rest} = props;
-    
+
+    const { className: _, ...rest } = props;
+
     return (
-        <button 
-            className="bg-ec-brick text-ec-light p-2 rounded-xl"
+        <button
+            className=" 
+                text-ec-base-light bg-ec-base-medium p-2 rounded-xl duration-300 text-center
+                hover:bg-ec-accent-medium
+                disabled:text-ec-gray-dark disabled:bg-ec-gray-light disabled:cursor-not-allowed
+            "
             {...rest}
         >
             {props.children}
