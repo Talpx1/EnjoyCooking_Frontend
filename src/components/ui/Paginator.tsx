@@ -3,11 +3,12 @@ import Form from "../form/Form";
 import Button from "./Button";
 import { RxDoubleArrowLeft, RxDoubleArrowRight } from 'react-icons/rx';
 import { RiArrowDropLeftLine, RiArrowDropRightLine } from 'react-icons/ri';
+import { useTranslation } from "react-i18next";
 
 export default function Paginator({paginatedData}: {paginatedData: PaginatedData<any>}) {
-    const links = paginatedData.links.filter((link, i)=>i!==0 && i!==(paginatedData.links.length-1))
+    const {t} = useTranslation();
 
-    console.log(paginatedData)
+    const links = paginatedData.links.filter((link, i)=>i!==0 && i!==(paginatedData.links.length-1))
 
     return (
         <div className="flex gap-2 items-center">
@@ -15,13 +16,13 @@ export default function Paginator({paginatedData}: {paginatedData: PaginatedData
             {/* first page */}
             <Form>
                 <input type="hidden" value={1} name='page'/>
-                <Button type="submit" disabled={paginatedData.current_page===1}> <RxDoubleArrowLeft /> </Button> 
+                <Button type="submit" disabled={paginatedData.current_page===1} title={t('fist_page')}> <RxDoubleArrowLeft /> </Button> 
             </Form> 
 
             {/* prev page */}
             <Form>
                 <input type="hidden" value={paginatedData.current_page-1} name='page'/>
-                <Button type="submit" disabled={paginatedData.current_page===1}> <RiArrowDropLeftLine /> </Button> 
+                <Button type="submit" disabled={paginatedData.current_page===1} title={t('prev_page')}> <RiArrowDropLeftLine /> </Button> 
             </Form> 
 
             {links.map((link)=>(
@@ -34,13 +35,13 @@ export default function Paginator({paginatedData}: {paginatedData: PaginatedData
             {/* next page */}
             <Form>
                 <input type="hidden" value={paginatedData.current_page+1} name='page'/>
-                <Button type="submit" disabled={paginatedData.current_page===paginatedData.last_page}> <RiArrowDropRightLine /> </Button> 
+                <Button type="submit" disabled={paginatedData.current_page===paginatedData.last_page} title={t('next_page')}> <RiArrowDropRightLine /> </Button> 
             </Form> 
 
             {/* last page */}
             <Form>
                 <input type="hidden" value={paginatedData.last_page} name='page'/>
-                <Button type="submit" disabled={paginatedData.current_page===paginatedData.last_page}> <RxDoubleArrowRight /> </Button> 
+                <Button type="submit" disabled={paginatedData.current_page===paginatedData.last_page} title={t('last_page')}> <RxDoubleArrowRight /> </Button> 
             </Form> 
             
         </div>

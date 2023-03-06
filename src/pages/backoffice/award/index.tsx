@@ -6,10 +6,11 @@ import { Award } from '../../../types/award_types';
 import DeleteButton from '../../../components/ui/DeleteButton';
 import PaginatedDataTable from '../../../components/ui/PaginatedDataTable';
 import PageTitle from '../../../components/ui/PageTitle';
+import { useTranslation } from 'react-i18next';
 
 export default function AwardsIndex() {
+    const { t } = useTranslation();
     const awards: PaginatedData<Award> = useLoaderData() as PaginatedData<Award>;
-
 
     const columns = (placeholderRecord: Award) => (
         <>
@@ -20,25 +21,23 @@ export default function AwardsIndex() {
                 <div>{placeholderRecord.name}</div>
             </div>
             {/* price */}
-            <div>{placeholderRecord.price!==0 ? `${placeholderRecord.price.toFixed(2)}€` : 'FREE'}</div>
+            <div>{placeholderRecord.price!==0 ? `${placeholderRecord.price.toFixed(2)}€` : t('free')}</div>
             {/* actions */}
             <div className="flex gap-1">
-                <Link to={`${placeholderRecord.id}/edit`}><Button type='button' title='Edit'><FaEdit /></Button></Link>
-                <DeleteButton entityId={placeholderRecord.id} confirmText={`Are you sure you want to delete the award "${placeholderRecord.name}"?`} title='Delete'><FaTrash /></DeleteButton>
+                <Link to={`${placeholderRecord.id}/edit`}><Button type='button' title={t('edit')}><FaEdit /></Button></Link>
+                <DeleteButton entityId={placeholderRecord.id} confirmText={t(`award_confirm_delete`, { name: placeholderRecord.name })} title={t('delete')}><FaTrash /></DeleteButton>
             </div>
         </>
     )
 
-
-
     return (
         <>
-            <Link to="create" className='block mb-5'><Button type="button">Add Award</Button></Link>
-            <PageTitle>Awards</PageTitle>
+            <Link to="create"><Button type="button">{t('add_award')}</Button></Link>
+            <PageTitle>{t('awards')}</PageTitle>
             
             <PaginatedDataTable 
-                headings={['Name', 'Price', 'Actions']}
-                emptyText='No Awards yet!'
+                headings={[t('name'), t('price'), t('actions')]}
+                emptyText={t('no_awards')}
                 paginatedData={awards}
                 columns={columns}
             />

@@ -37,3 +37,7 @@ export async function userLoginCleanup(){
 export function userTokenExists(): boolean{
     return localStorage.getItem('EC_ACCESS_TOKEN') !== undefined && localStorage.getItem('EC_ACCESS_TOKEN') !== null;
 }
+
+export function getAuthorizationToken(){
+    return userTokenExists() ? `Bearer ${localStorage.getItem('EC_ACCESS_TOKEN')}` : '';
+}

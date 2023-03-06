@@ -1,5 +1,5 @@
 import { FormMethod } from "react-router-dom";
-import { userTokenExists } from "../auth/auth";
+import { getAuthorizationToken } from "../auth/auth";
 import { objToQueryString } from "../url";
 import { ApiAction, ContentTypes, CoreFetchCall } from '../../types/core_types';
 import { formDataToObj, objToFormData } from "../formData";
@@ -78,9 +78,6 @@ function buildOptions(method: FormMethod, contentType: ContentTypes, data: objec
     }
 
     return options;
-}
-function getAuthorizationToken(){
-    return userTokenExists() ? `Bearer ${localStorage.getItem('EC_ACCESS_TOKEN')}` : '';
 }
 
 function buildUrl(isApi: boolean, entity: string, withAuth: boolean,  entityId?: number, queryStringParams?: object): string{

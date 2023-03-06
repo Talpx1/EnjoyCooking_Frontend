@@ -2,10 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { fetchCore } from '../core/core';
 import useUser from '../../hooks/useUser';
+import { useTranslation } from 'react-i18next';
 export function OAuthPkceCallbackComponent() {
     
     const navigate = useNavigate();
     const [user, setUser] = useUser();
+    const {t} = useTranslation()
 
     useEffect(()=>{
         const callback = async () => {
@@ -54,6 +56,6 @@ export function OAuthPkceCallbackComponent() {
     },[])
     
     return (
-        <h1>Logging you in... please wait</h1>
+        <h1>{t('logging_in')}</h1>
     );
 };

@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from "react"
+import React, { InputHTMLAttributes } from "react"
 import useFormInputErrors from '../../hooks/useFormInputErrors';
 
 export type FormInput = {
@@ -6,17 +6,25 @@ export type FormInput = {
     errors?: object|null
 }
 
-export default function FormInput(props: FormInput & InputHTMLAttributes<HTMLInputElement>) {
+function FormInput(props: FormInput & InputHTMLAttributes<HTMLInputElement>, ref) {
 
     const newProps = !props.id ? {...props, id: props.name} : props;
-    const {label, ...rest} = newProps;
+    const {label, className, ...rest} = newProps;
 
     const errors = useFormInputErrors(newProps.name);
 
     return (
         <>
             {props.label && <label htmlFor={newProps.name} className="block">{newProps.label}</label>}
-            <input {...rest} />
+            <input 
+                className={`
+                    ${className??''}
+                    p-2 rounded-xl text-ec-gray-dark
+                    disabled:cursor-not-allowed disabled:bg-ec-gray-light disabled:text-ec-gray-medium
+                `} 
+                ref={ref}
+                {...rest}
+            />
 
             {errors && ( 
                 <p>
@@ -27,3 +35,5 @@ export default function FormInput(props: FormInput & InputHTMLAttributes<HTMLInp
         </>
     );
 };
+
+export default React.forwardRef(FormInput);

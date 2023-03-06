@@ -13,14 +13,12 @@ export default function PaginatedDataTable({headings, columns, paginatedData, em
     const emptyData = paginatedData.data.length === 0;
     const colCount = headings.length
 
-    console.log(paginatedData);
-
     if(emptyData) return (<div className='text-center w-full'>{emptyText}</div>);
 
     return (
-        <div className='py-5 flex flex-col gap-y-5'>
+        <div className='flex flex-col gap-y-5'>
             <div className='grid grid-cols-3 items-center border-b-2 pb-1 border-ec-base-medium'>
-                {headings.map((heading) => <div className="font-bald text-lg">{heading}</div>)}
+                {headings.map((heading) => <div className="font-bald text-lg" key={heading}>{heading}</div>)}
             </div>
             { paginatedData.data.map((record) => {
                 return(

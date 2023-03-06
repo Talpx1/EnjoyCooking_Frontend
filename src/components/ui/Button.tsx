@@ -2,15 +2,16 @@ import { ButtonHTMLAttributes } from "react";
 
 export default function Button(props: ButtonHTMLAttributes<HTMLButtonElement>) {
 
-    const { className: _, ...rest } = props;
+    const { className, ...rest } = props;
 
     return (
         <button
-            className=" 
-                text-ec-base-light bg-ec-base-medium p-2 rounded-xl duration-300 text-center
+            className={`
+                ${className??''}
+                text-ec-base-light bg-ec-base-medium p-2 rounded-xl duration-300 text-center block
                 hover:bg-ec-accent-medium
                 disabled:text-ec-gray-dark disabled:bg-ec-gray-light disabled:cursor-not-allowed
-            "
+            `}
             {...rest}
         >
             {props.children}
