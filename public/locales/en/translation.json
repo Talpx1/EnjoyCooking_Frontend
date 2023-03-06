@@ -22,5 +22,6 @@
     "edit_award": "Edit Award",
     "create_award": "Create Award",
     "logging_in": "Logging you in... please wait",
-    "unexpected_error": "Sorry, an unexpected error has occurred."
+    "unexpected_error": "Sorry, an unexpected error has occurred.",
+    "user_cant": "Sorry, but you are not allowed to see this resource"
 }

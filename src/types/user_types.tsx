@@ -15,7 +15,7 @@ export type User = {
     username: string,
     website_url: string|null,
     roles: {[key: number]: Role},
-    all_permissions: {[key: number]: Permission}
+    permissions_list: string[]
 }
 
 export type Role = {
@@ -28,17 +28,5 @@ export type Role = {
         model_id: number,
         role_id: number, 
         model_type: string
-    }
-}
-
-export type Permission = {
-    id: number,
-    name: string,
-    guard_name: string,
-    created_at: string,
-    updated_at: string,
-    pivot: {
-        role_id: number, 
-        permission_id: number, 
     }
 }

@@ -1,6 +1,6 @@
-import { PaginatedData } from "../../types/core_types";
-import Form from "../form/Form";
-import Button from "./Button";
+import { PaginatedData } from "../../../types/core_types";
+import Form from "../../form/Form";
+import Button from "../buttons/Button";
 import { RxDoubleArrowLeft, RxDoubleArrowRight } from 'react-icons/rx';
 import { RiArrowDropLeftLine, RiArrowDropRightLine } from 'react-icons/ri';
 import { useTranslation } from "react-i18next";

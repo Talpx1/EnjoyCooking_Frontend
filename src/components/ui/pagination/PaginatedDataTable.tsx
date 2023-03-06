@@ -1,4 +1,4 @@
-import { PaginatedData } from '../../types/core_types';
+import { PaginatedData } from '../../../types/core_types';
 import Paginator from './Paginator';
 
 type PaginatedDataTable = {

@@ -13,6 +13,7 @@ import Login from './pages/public/auth/Login';
 import createAward from './services/core/actions/createAward';
 import editAward from './services/core/actions/editAward';
 import destroyAward from './services/core/actions/destroyAward';
+import Can from './components/conditionals/Can';
 
 export const routes = (
     <>
@@ -21,9 +22,9 @@ export const routes = (
                 {/* dashboard */}
                 <Route index element={<Dashboard />} />
                 {/* awards */}
-                <Route path="award" element={<AwardsIndex />} loader={awardsLoader} />
-                <Route path="award/create" element={<AwardsCreate />} action={createAward} />
-                <Route path="award/:id/edit" element={<AwardsCreate />} loader={ ({ params }) => awardLoader(params.id)} action={editAward}/>
+                <Route path="award" element={<Can permission='create_award' shouldThrow={true}><AwardsIndex /></Can>} loader={awardsLoader} />
+                <Route path="award/create" element={<Can permission='create_award' shouldThrow={true}><AwardsCreate /></Can>} action={createAward} />
+                <Route path="award/:id/edit" element={<Can permission='edit_award' shouldThrow={true}><AwardsCreate /></Can>} loader={ ({ params }) => awardLoader(params.id)} action={editAward}/>
                 <Route path="award/:id/destroy" action={destroyAward}/>
             </Route>
 

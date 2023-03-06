@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
-import Button from '../../../components/ui/Button';
+import Button from '../../../components/ui/buttons/Button';
 export default function Login() {
     const [userLogin, userLogout, isLoggedIn] = useAuth()
 

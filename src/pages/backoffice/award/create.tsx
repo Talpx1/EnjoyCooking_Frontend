@@ -1,11 +1,11 @@
 import { useLoaderData } from 'react-router-dom';
 import FormInput from '../../../components/form/FormInput';
 import { Award } from '../../../types/award_types';
-import Button from '../../../components/ui/Button';
+import Button from '../../../components/ui/buttons/Button';
 import Form from '../../../components/form/Form';
 import FormImageInput from '../../../components/form/FormImageInput';
-import BackButton from '../../../components/ui/BackButton';
-import PageTitle from '../../../components/ui/PageTitle';
+import BackButton from '../../../components/ui/buttons/BackButton';
+import PageTitle from '../../../components/ui/backoffice/PageTitle';
 import { useTranslation } from 'react-i18next';
 
 export default function AwardsCreate() {

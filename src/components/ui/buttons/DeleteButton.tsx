@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from "react";
-import Form from "../form/Form";
+import Form from "../../form/Form";
 import Button from "./Button";
 
 type DeleteButton = ButtonHTMLAttributes<HTMLButtonElement> & {confirmText: string} & {entityId: number}

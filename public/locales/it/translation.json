@@ -22,5 +22,6 @@
     "edit_award": "Modifica Premio",
     "create_award": "Crea Premio",
     "logging_in": "Accesso in corso... si prega di attendere",
-    "unexpected_error": "Si é verificato un errore inaspettato, ci scusiamo per il disagio"
+    "unexpected_error": "Si é verificato un errore inaspettato, ci scusiamo per il disagio",
+    "user_cant": "Ci dispiace, ma non hai l'autorizzazione per visualizzare questa risorsa"
 }
