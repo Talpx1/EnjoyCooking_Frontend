@@ -9,10 +9,12 @@ import PageTitle from '../../../components/ui/backoffice/PageTitle';
 import { useTranslation } from 'react-i18next';
 import { useChangeTitle } from '../../../hooks/useChangeTitle';
 import PageStateDetector from '../../../components/ui/backoffice/PageStateDetector';
+import Description from '../../../components/ui/formatting/Description';
 
 export default function BadgesIndex() {
     const { t } = useTranslation();
     const badges: PaginatedData<Badge> = useLoaderData() as PaginatedData<Badge>;
+    const maxLength = import.meta.env.EC_MAX_DESCRIPTIONS_LENGTH;
 
     useChangeTitle(t('badges'));
 
@@ -21,7 +23,7 @@ export default function BadgesIndex() {
             {/* title */}
             <div>{placeholderRecord.title}</div>
             {/* description */}
-            <div>{placeholderRecord?.description}</div>
+            <Description maxLength={maxLength}>{placeholderRecord?.description}</Description>
             {/* actions */}
             <div className="flex gap-1">
                 <Link to={`${placeholderRecord.id}/edit`}><Button type='button' title={t('edit')}><FaEdit /></Button></Link>

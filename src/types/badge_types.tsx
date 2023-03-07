@@ -2,6 +2,6 @@ export type Badge = {
     created_at: string,
     id: number,
     title: string,
-    description: number|null,
+    description: string|null,
     updated_at: string,
 }
