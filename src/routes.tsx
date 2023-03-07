@@ -9,12 +9,18 @@ import Home from './pages/public/Home';
 import { OAuthPkceCallbackComponent } from './services/auth/OAuthPkceCallbackComponent';
 import RequireAuth from './services/auth/RequireAuth';
 import Login from './pages/public/auth/Login';
-import createAward from './services/core/actions/createAward';
-import editAward from './services/core/actions/editAward';
-import destroyAward from './services/core/actions/destroyAward';
+import createAward from './services/core/actions/award/createAward';
+import editAward from './services/core/actions/award/editAward';
+import destroyAward from './services/core/actions/award/destroyAward';
 import Can from './components/conditionals/Can';
 import ErrorScreen from './pages/ErrorScreen';
 import ErrorPage from './pages/backoffice/errors/ErrorPage';
+import { badgeLoader, badgesLoader } from './services/core/loaders/badge';
+import BadgesIndex from './pages/backoffice/badge';
+import BadgeCreate from './pages/backoffice/badge/create';
+import createBadge from './services/core/actions/badge/createBadge';
+import editBadge from './services/core/actions/badge/editBadge';
+import destroyBadge from './services/core/actions/badge/destroyBadge';
 
 export const routes = (
     <>
@@ -28,6 +34,11 @@ export const routes = (
                     <Route path="award/create" element={<Can permission='create_award' shouldThrow={true}><AwardsCreate /></Can>} action={createAward} />
                     <Route path="award/:id/edit" element={<Can permission='edit_award' shouldThrow={true}><AwardsCreate /></Can>} loader={ ({ params }) => awardLoader(params.id)} action={editAward}/>
                     <Route path="award/:id/destroy" action={destroyAward}/>
+                    {/* badges */}
+                    <Route path="badge" element={<Can permission='create_badge' shouldThrow={true}><BadgesIndex /></Can>} loader={badgesLoader} />
+                    <Route path="badge/create" element={<Can permission='create_badge' shouldThrow={true}><BadgeCreate /></Can>} action={createBadge} />
+                    <Route path="badge/:id/edit" element={<Can permission='edit_badge' shouldThrow={true}><BadgeCreate /></Can>} loader={ ({ params }) => badgeLoader(params.id)} action={editBadge}/>
+                    <Route path="badge/:id/destroy" action={destroyBadge}/>
                 </Route>
             </Route>
 

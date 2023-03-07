@@ -23,5 +23,14 @@
     "create_award": "Create Award",
     "logging_in": "Logging you in... please wait",
     "unexpected_error": "Sorry, an unexpected error has occurred.",
-    "user_cant": "Sorry, but you are not allowed to see this resource"
+    "user_cant": "Sorry, but you are not allowed to see this resource",
+    "badges": "Badges",
+    "edit_badge": "Edit Badge",
+    "create_badge": "Create Badge",
+    "description": "Description",
+    "save_badge": "Save Badge",
+    "badge_confirm_delete": "Are you sure you want to delete the badge \"{{title}}\"?",
+    "title": "Title",
+    "add_badge": "Add Badge",
+    "no_badges": "No Badges yet!"
 }

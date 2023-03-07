@@ -7,7 +7,7 @@ export default function SideMenu() {
     const { t } = useTranslation();
 
     return (
-        <aside className="py-3 px-5 bg-ec-base-medium max-h-full overflow-y-scroll">
+        <aside className="py-3 px-5 bg-ec-base-medium min-w-fit overflow-y-scroll">
             <nav>
                 <ul className="flex flex-col gap-y-8">
                     {/* dashboard */}
@@ -17,6 +17,12 @@ export default function SideMenu() {
                     <Can permission="edit_award">
                         <li><NavLink to="award">{t('awards')}</NavLink></li>
                     </Can>
+
+                    {/* awards */}
+                    <Can permission="edit_badge">
+                        <li><NavLink to="badge">{t('badges')}</NavLink></li>
+                    </Can>
+                    
                 </ul>
             </nav>
         </aside>

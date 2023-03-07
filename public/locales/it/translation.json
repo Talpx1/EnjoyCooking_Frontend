@@ -23,5 +23,14 @@
     "create_award": "Crea Premio",
     "logging_in": "Accesso in corso... si prega di attendere",
     "unexpected_error": "Si é verificato un errore inaspettato, ci scusiamo per il disagio",
-    "user_cant": "Ci dispiace, ma non hai l'autorizzazione per visualizzare questa risorsa"
+    "user_cant": "Ci dispiace, ma non hai l'autorizzazione per visualizzare questa risorsa",
+    "badges": "Titoli",
+    "edit_badge": "Modifica Titolo",
+    "create_badge": "Crea Titolo",
+    "description": "Descrizione",
+    "save_badge": "Salva Titolo",
+    "badge_confirm_delete": "Sei sicuro di voler eliminare il titolo \"{{title}}\"?",
+    "title": "Titolo",
+    "add_badge": "Aggiungi Titolo",
+    "no_badges": "Nessun Titolo!"
 }
