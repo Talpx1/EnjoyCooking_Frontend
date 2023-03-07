@@ -1,4 +1,4 @@
-import { useLoaderData, Link } from 'react-router-dom';
+import { useLoaderData, Link, useNavigation } from 'react-router-dom';
 import Button from '../../../components/ui/buttons/Button';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { PaginatedData } from '../../../types/core_types';
@@ -8,10 +8,14 @@ import PaginatedDataTable from '../../../components/ui/pagination/PaginatedDataT
 import PageTitle from '../../../components/ui/backoffice/PageTitle';
 import { useTranslation } from 'react-i18next';
 import fallbackIcon from '../../../assets/fallbacks/fallback_icon.png';
+import { useChangeTitle } from '../../../hooks/useChangeTitle';
 
 export default function AwardsIndex() {
     const { t } = useTranslation();
     const awards: PaginatedData<Award> = useLoaderData() as PaginatedData<Award>;
+    const navigation = useNavigation();
+
+    useChangeTitle(t('awards'));
 
     const columns = (placeholderRecord: Award) => (
         <>
@@ -32,7 +36,7 @@ export default function AwardsIndex() {
     )
 
     return (
-        <>
+        <div className={navigation.state === "loading" ? "opacity-50 grayscale" : ""}>
             <Link to="create"><Button type="button">{t('add_award')}</Button></Link>
             <PageTitle>{t('awards')}</PageTitle>
             
@@ -42,7 +46,7 @@ export default function AwardsIndex() {
                 paginatedData={awards}
                 columns={columns}
             />
-        </>
+        </div>
     );
     
 }

@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
 import Can from "../../../conditionals/Can";
+import NavLink from "../../../ui/backoffice/NavLink";
 
 export default function SideMenu() {
 
@@ -9,9 +9,10 @@ export default function SideMenu() {
     return (
         <aside className="py-3 px-5 bg-ec-base-medium max-h-full overflow-y-scroll">
             <nav>
-                <ul className="flex flex-col gap-3">
+                <ul className="flex flex-col gap-y-8">
                     {/* dashboard */}
-                    <li><NavLink to="/backoffice">{t('dashboard')}</NavLink></li>
+                    <li><NavLink to="/backoffice" end>{t('dashboard')}</NavLink></li>
+                    
                     {/* awards */}
                     <Can permission="edit_award">
                         <li><NavLink to="award">{t('awards')}</NavLink></li>
