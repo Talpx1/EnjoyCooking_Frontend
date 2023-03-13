@@ -1,4 +1,4 @@
-import { useLoaderData, Link, Await } from 'react-router-dom';
+import { useLoaderData, Link } from 'react-router-dom';
 import Button from '../../../components/ui/buttons/Button';
 import { PaginatedData } from '../../../types/core_types';
 import PageTitle from '../../../components/ui/backoffice/PageTitle';
@@ -12,6 +12,7 @@ import DeleteButton from '../../../components/ui/buttons/DeleteButton';
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { getSubcategories } from '../../../services/core/loaders/category';
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
+import useSessionCache from '../../../hooks/useSessionCache';
 
 export default function CategoriesIndex() {
     const { t } = useTranslation();
@@ -37,7 +38,7 @@ export default function CategoriesIndex() {
                     {state.map((category: Category) => <CategoryRow key={category.id} category={category} dispatch={dispatch} />)}
                 </div>
 
-            <Paginator paginatedData={categories}></Paginator>
+            <Paginator paginatedData={categories} className='mt-8'></Paginator>
             
         </PageStateDetector>
     );
@@ -47,6 +48,23 @@ export default function CategoriesIndex() {
 function CategoryRow({category, dispatch}: {category: Category, dispatch: Function}){
     const { t } = useTranslation();
     const [expanded, setExpanded] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const {getOrCache} = useSessionCache();
+
+    async function asyncDispatch(action:any){
+        switch(action.type){
+            case ACTIONS.LOAD_SUBCATEGORIES:
+                const hasSubcategories = action.payload.category?.subcategories ?? false;
+                const isLoadMore = action.payload?.isLoadMore ?? false;
+                if(hasSubcategories && !isLoadMore) return;
+                setLoading(true)
+                const page = isLoadMore ? (action.payload.category.subcategories.current_page + 1) : 1;
+                action.payload.subcategories = await getOrCache(`id_${action.payload.category.id}_page_${page}`, async() => await getSubcategories(action.payload.category.id, page));                 
+                dispatch(action);
+                setLoading(false);
+                break;
+        }
+    }
 
     return (
         <div className={`flex justify-between ${expanded && 'border-ec-base-medium border-l-2 pl-1'}`} key={category.id}>
@@ -60,8 +78,9 @@ function CategoryRow({category, dispatch}: {category: Category, dispatch: Functi
                     <div className='cursor-pointer'>{category.name}</div>
                 </div>
                 {/* subcategories list */}
-                <div className='ml-5' hidden={!expanded}>
+                <div className='ml-5' hidden={!expanded}>                
                     {
+                        loading ? (<div>{t('loading')}</div>) :
                         (category?.subcategories?.data?.length??false) ? (                        
                             category.subcategories.data.map((subcategory: Category)=>(
                                 <div className='border-ec-accent-medium border-2 p-2 my-2 rounded-xl'>
@@ -107,27 +126,8 @@ function reducer(state, action){
     }
 }
 
-function recursivelyFindCategoryAndAddSubcategories(category: Category, category_id: number, subcategories: object){
+function recursivelyFindCategoryAndAddSubcategories(category: Category, category_id: number, subcategories: object): object{
     if(category.id === category_id) return {...category, subcategories:{...subcategories, data:[...category?.subcategories?.data??[], ...subcategories.data]}, load_more: subcategories.current_page !== subcategories.last_page};
     if(category?.subcategories??false) return {...category, subcategories:{...subcategories, data:[...category.subcategories.data.map((subcategory)=>recursivelyFindCategoryAndAddSubcategories(subcategory, category_id, subcategories))]}};
     return category;
 }
-
-
-
-async function asyncDispatch(action:any, dispatch: Function){
-    switch(action.type){
-        case ACTIONS.LOAD_SUBCATEGORIES:
-            const hasSubcategories = action.payload.category?.subcategories ?? false;
-            const isLoadMore = action.payload?.isLoadMore ?? false;
-            if(hasSubcategories && !isLoadMore) return;
-            const page = isLoadMore ? (action.payload.category.subcategories.current_page + 1) : 1;
-            action.payload.subcategories = await getSubcategories(action.payload.category.id, page);
-            dispatch(action);
-            break;
-    }
-}
-
-//TODO: memoize results
-
-
