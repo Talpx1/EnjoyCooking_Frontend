@@ -9,7 +9,7 @@ const router = createBrowserRouter(createRoutesFromElements(routes));
 export default function App() {
     return (
         <React.StrictMode>
-            <Suspense fallback="loading">
+            <Suspense fallback="loading...">
                 <AuthProvider>
                     <RouterProvider router={router} />
                 </AuthProvider>

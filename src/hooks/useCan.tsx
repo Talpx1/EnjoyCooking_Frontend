@@ -6,6 +6,6 @@ export default function useCan() {
     return (permission: string): boolean => {
         if(!user) return false;
 
-        return user.permissions_list.includes(permission);
+        return user?.permissions_list?.includes(permission) ?? false;
     }
 };

@@ -32,5 +32,17 @@
     "badge_confirm_delete": "Are you sure you want to delete the badge \"{{title}}\"?",
     "title": "Title",
     "add_badge": "Add Badge",
-    "no_badges": "No Badges yet!"
+    "no_badges": "No Badges yet!",
+    "categories": "Categories",
+    "edit_category": "Edit Category",
+    "create_category": "Create Category",
+    "save_category": "Save Category",
+    "add_category": "Add Category",
+    "parent_category": "Parent category",
+    "insert_3_char_to_search": "Insert at least 3 characters to search...",
+    "no_results": "No results",
+    "loading": "Loading...",
+    "category_confirm_delete": "Are you sure you want to delete the category \"{{name}}\"?",
+    "no_subcategories": "There are no sub-categories for {{name}}",
+    "load_more": "load more"
 }

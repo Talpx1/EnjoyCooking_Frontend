@@ -22,7 +22,11 @@ export default function SideMenu() {
                     <Can permission="edit_badge">
                         <li><NavLink to="badge">{t('badges')}</NavLink></li>
                     </Can>
-                    
+
+                    {/* awards */}
+                    <Can permission="edit_category">
+                        <li><NavLink to="category">{t('categories')}</NavLink></li>
+                    </Can>                    
                 </ul>
             </nav>
         </aside>

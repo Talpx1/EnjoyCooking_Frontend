@@ -32,5 +32,17 @@
     "badge_confirm_delete": "Sei sicuro di voler eliminare il titolo \"{{title}}\"?",
     "title": "Titolo",
     "add_badge": "Aggiungi Titolo",
-    "no_badges": "Nessun Titolo!"
+    "no_badges": "Nessun Titolo!",
+    "categories": "Categorie",
+    "edit_category": "Modifica Categoria",
+    "create_category": "Crea Categoria",
+    "save_category": "Salva Categoria",
+    "add_category": "Aggiungi Categoria",
+    "parent_category": "Categoria genitore",
+    "insert_3_char_to_search": "Inserisci almeno 3 caratteri per cercare...",
+    "no_results": "Nessun risultato",
+    "loading": "Caricamento...",
+    "category_confirm_delete": "Sei sicuro di voler eliminare la categoria \"{{name}}\"?",
+    "no_subcategories": "Non ci sono sotto-categorie per {{name}}",
+    "load_more": "carica altro"
 }

@@ -21,6 +21,11 @@ import BadgeCreate from './pages/backoffice/badge/create';
 import createBadge from './services/core/actions/badge/createBadge';
 import editBadge from './services/core/actions/badge/editBadge';
 import destroyBadge from './services/core/actions/badge/destroyBadge';
+import CategoriesIndex from './pages/backoffice/category';
+import { firstLevelCategoriesLoader, categoryLoader } from './services/core/loaders/category';
+import CategoryCreate from './pages/backoffice/category/create';
+import createCategory from './services/core/actions/category/createCategory';
+import destroyCategory from './services/core/actions/category/destroyCategory';
 
 export const routes = (
     <>
@@ -39,6 +44,11 @@ export const routes = (
                     <Route path="badge/create" element={<Can permission='create_badge' shouldThrow={true}><BadgeCreate /></Can>} action={createBadge} />
                     <Route path="badge/:id/edit" element={<Can permission='edit_badge' shouldThrow={true}><BadgeCreate /></Can>} loader={ ({ params }) => badgeLoader(params.id)} action={editBadge}/>
                     <Route path="badge/:id/destroy" action={destroyBadge}/>
+                    {/* categories */}
+                    <Route path="category" element={<Can permission='create_category' shouldThrow={true}><CategoriesIndex /></Can>} loader={firstLevelCategoriesLoader}/>
+                    <Route path="category/create" element={<Can permission='create_category' shouldThrow={true}><CategoryCreate /></Can>} action={createCategory} />
+                    <Route path="category/:id/edit" element={<Can permission='edit_category' shouldThrow={true}><CategoryCreate /></Can>} loader={ ({ params }) => categoryLoader(params.id)} action={editBadge}/>
+                    <Route path="category/:id/destroy" action={destroyCategory}/>
                 </Route>
             </Route>
 
