@@ -49,7 +49,6 @@ function CategoryRow({category, dispatch}: {category: Category, dispatch: Functi
     const { t } = useTranslation();
     const [expanded, setExpanded] = useState(false);
     const [loading, setLoading] = useState(false);
-    const {getOrCache} = useSessionCache();
 
     async function asyncDispatch(action:any){
         switch(action.type){
@@ -59,7 +58,7 @@ function CategoryRow({category, dispatch}: {category: Category, dispatch: Functi
                 if(hasSubcategories && !isLoadMore) return;
                 setLoading(true)
                 const page = isLoadMore ? (action.payload.category.subcategories.current_page + 1) : 1;
-                action.payload.subcategories = await getOrCache(`id_${action.payload.category.id}_page_${page}`, async() => await getSubcategories(action.payload.category.id, page));                 
+                action.payload.subcategories = await getSubcategories(action.payload.category.id, page);     
                 dispatch(action);
                 setLoading(false);
                 break;
@@ -72,7 +71,7 @@ function CategoryRow({category, dispatch}: {category: Category, dispatch: Functi
                 {/* name and expand */}
                 <div className="flex items-center gap-1" onClick={async () => {
                     setExpanded(expanded=>!expanded);
-                    await asyncDispatch({type:ACTIONS.LOAD_SUBCATEGORIES, payload:{category:category}}, dispatch);
+                    await asyncDispatch({type:ACTIONS.LOAD_SUBCATEGORIES, payload:{category:category}});
                 }}>
                     <Button id={`load_subcategories_${category.id}`} value={category.id} type='button'> {expanded ? <IoIosArrowDown /> : <IoIosArrowForward />} </Button>
                     <div className='cursor-pointer'>{category.name}</div>
@@ -83,8 +82,8 @@ function CategoryRow({category, dispatch}: {category: Category, dispatch: Functi
                         loading ? (<div>{t('loading')}</div>) :
                         (category?.subcategories?.data?.length??false) ? (                        
                             category.subcategories.data.map((subcategory: Category)=>(
-                                <div className='border-ec-accent-medium border-2 p-2 my-2 rounded-xl'>
-                                    <CategoryRow key={subcategory.id} category={subcategory} dispatch={dispatch} />
+                                <div className='border-ec-accent-medium border-2 p-2 my-2 rounded-xl' key={subcategory.id}>
+                                    <CategoryRow category={subcategory} dispatch={dispatch} />
                                 </div>
                             )) 
                         ) : t('no_subcategories', {name: category.name})

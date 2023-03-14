@@ -11,7 +11,7 @@ export default function useBrowserStorage<T>(key: string, initialValue: T, stora
             const item = storage.getItem(key);
             return item ? JSON.parse(item) : initialValue;
         } catch (error) {
-            console.log(error);
+            console.error(error);
             return initialValue;
         }
     });
@@ -24,7 +24,7 @@ export default function useBrowserStorage<T>(key: string, initialValue: T, stora
 
             typeof window !== "undefined" && storage.setItem(key, JSON.stringify(valueToStore));
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     };
 
