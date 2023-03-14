@@ -3,6 +3,7 @@ import { GroupBase, Options, Props } from 'react-select';
 import AsyncSelect, { AsyncProps } from 'react-select/async';
 import useFormInputErrors from '../../hooks/useFormInputErrors';
 import { useTranslation } from 'react-i18next';
+import FormInputLabel from './FormInputLabel';
 
 type FormSelect<Option, IsMulti extends boolean = false, Group extends GroupBase<Option> = GroupBase<Option>> = AsyncProps<Option, IsMulti, Group> & {label: string}
 
@@ -17,8 +18,7 @@ function FormSelect<Option, IsMulti extends boolean = false, Group extends Group
 
     return (
         <>
-            {props.label && <label htmlFor={newProps.name} className="block">{newProps.label}</label>}
-
+            <FormInputLabel htmlFor={newProps.name}>{newProps.label}</FormInputLabel>
             <AsyncSelect
                 unstyled
                 cacheOptions

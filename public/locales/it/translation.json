@@ -44,5 +44,15 @@
     "loading": "Caricamento...",
     "category_confirm_delete": "Sei sicuro di voler eliminare la categoria \"{{name}}\"?",
     "no_subcategories": "Non ci sono sotto-categorie per {{name}}",
-    "load_more": "carica altro"
+    "load_more": "carica altro",
+    "courses": "Portate",
+    "edit_course": "Modifica Portata",
+    "create_course": "Crea Portata",
+    "save_course": "Salva Portata",
+    "course_confirm_delete": "Sei sicuro di voler eliminare la portata \"{{name}}\"?",
+    "add_course": "Aggiungi Portata",
+    "no_courses": "Nessuna Portata!",
+    "slug": "Slug",
+    "warn_manually_handle_translations": "Attenzione: questi contenuti necessitano di traduzioni, ma siccome queste non possono essere automatizzate, si dovranno aggiungere manualmente nel core o nei files di traduzione. In caso di necessità contattare un amministratore.",
+    "warn_core_references": "Attenzione: questi contenuti sono auto-generati e referenziati dal core. Se eliminati o modificati, potrebbero verificarsi errori. Eseguire cambiamenti solo se si sa cosa si sta facendo. In caso di necessità contattare un amministratore."
 }

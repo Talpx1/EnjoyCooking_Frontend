@@ -2,13 +2,13 @@ import { redirect } from "react-router-dom";
 import { fetchCore } from "../../core";
 import { can } from "../../../permissions";
 
-export default async function editCategory({ request, params }) {
-    can('update_category', true);
+export default async function editCourse({ request, params }) {
+    can('update_course', true);
 
     const formData = await request.formData();
 
     const response = await fetchCore({
-        entity: 'category',
+        entity: 'course',
         entityId: params.id,
         action: 'update',
         data: formData,
@@ -16,5 +16,5 @@ export default async function editCategory({ request, params }) {
     
     if(response?.hasValidationErrors) return response.errors;
 
-    return redirect(`/backoffice/category`);
+    return redirect(`/backoffice/course`);
 };

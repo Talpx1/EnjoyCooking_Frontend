@@ -12,7 +12,8 @@ import DeleteButton from '../../../components/ui/buttons/DeleteButton';
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { getSubcategories } from '../../../services/core/loaders/category';
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
-import useSessionCache from '../../../hooks/useSessionCache';
+import MessageBox from '../../../components/ui/MessageBox';
+import { AiFillWarning } from 'react-icons/ai';
 
 export default function CategoriesIndex() {
     const { t } = useTranslation();
@@ -31,6 +32,9 @@ export default function CategoriesIndex() {
 
     return (
         <PageStateDetector>
+
+            <MessageBox type='warn' className='mb-3' icon={<AiFillWarning size={25}/>}>{t('warn_manually_handle_translations')}</MessageBox>
+
             <Link to="create"><Button type="button">{t('add_category')}</Button></Link>
             <PageTitle>{t('categories')}</PageTitle>
 

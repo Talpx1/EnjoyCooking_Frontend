@@ -10,6 +10,8 @@ import { useTranslation } from 'react-i18next';
 import { useChangeTitle } from '../../../hooks/useChangeTitle';
 import PageStateDetector from '../../../components/ui/backoffice/PageStateDetector';
 import Description from '../../../components/ui/formatting/Description';
+import { AiFillWarning } from 'react-icons/ai';
+import MessageBox from '../../../components/ui/MessageBox';
 
 export default function BadgesIndex() {
     const { t } = useTranslation();
@@ -34,6 +36,9 @@ export default function BadgesIndex() {
 
     return (
         <PageStateDetector>
+
+            <MessageBox type='warn' className='mb-3' icon={<AiFillWarning size={25}/>}>{t('warn_manually_handle_translations')}</MessageBox>
+
             <Link to="create"><Button type="button">{t('add_badge')}</Button></Link>
             <PageTitle>{t('badges')}</PageTitle>
             

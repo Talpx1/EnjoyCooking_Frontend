@@ -44,5 +44,15 @@
     "loading": "Loading...",
     "category_confirm_delete": "Are you sure you want to delete the category \"{{name}}\"?",
     "no_subcategories": "There are no sub-categories for {{name}}",
-    "load_more": "load more"
+    "load_more": "load more",
+    "courses": "Courses",
+    "edit_course": "Edit Course",
+    "create_course": "Create Course",
+    "save_course": "Save Course",
+    "course_confirm_delete": "Are you sure you want to delete the course \"{{name}}\"?",
+    "add_course": "Add Course",
+    "no_courses": "No Courses yet!",
+    "slug": "Slug",
+    "warn_manually_handle_translations": "Warning: these contents will need translations, but since those can't be automated, they'll need to be manually added in the core or in the translations files. In case of necessity contact an admin.",
+    "warn_core_references": "Warning: these contents are auto-generated and referenced from the core. If deleted or modified, errors may occur. Only make changes if you know what you are doing. In case of necessity contact an admin."
 }

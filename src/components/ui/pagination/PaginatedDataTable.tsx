@@ -11,18 +11,17 @@ type PaginatedDataTable = {
 export default function PaginatedDataTable({headings, columns, paginatedData, emptyText}: PaginatedDataTable) {
 
     const emptyData = paginatedData.data.length === 0;
-    const colCount = headings.length
 
     if(emptyData) return (<div className='text-center w-full'>{emptyText}</div>);
 
     return (
         <div className='flex flex-col gap-y-5'>
-            <div className='grid grid-cols-3 gap-14 items-center border-b-2 pb-1 border-ec-base-medium'>
+            <div className="grid grid-flow-col auto-cols-fr gap-14 items-center border-b-2 pb-1 border-ec-base-medium">
                 {headings.map((heading) => <div className="font-bald text-lg" key={heading}>{heading}</div>)}
             </div>
             { paginatedData.data.map((record) => {
                 return(
-                    <div className={`grid grid-cols-${colCount} items-center gap-14`} key={record.id}>
+                    <div className="grid grid-flow-col auto-cols-fr items-center gap-14" key={record.id}>
                         {columns(record)}
                     </div>
                 );

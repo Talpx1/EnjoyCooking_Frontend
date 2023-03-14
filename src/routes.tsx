@@ -26,6 +26,13 @@ import { firstLevelCategoriesLoader, categoryLoader } from './services/core/load
 import CategoryCreate from './pages/backoffice/category/create';
 import createCategory from './services/core/actions/category/createCategory';
 import destroyCategory from './services/core/actions/category/destroyCategory';
+import CoursesIndex from './pages/backoffice/course';
+import editCategory from './services/core/actions/category/editCategory';
+import { courseLoader, coursesLoader } from './services/core/loaders/course';
+import CourseCreate from './pages/backoffice/course/create';
+import createCourse from './services/core/actions/course/createCourse';
+import editCourse from './services/core/actions/course/editCourse';
+import destroyCourse from './services/core/actions/course/destroyCourse';
 
 export const routes = (
     <>
@@ -47,8 +54,13 @@ export const routes = (
                     {/* categories */}
                     <Route path="category" element={<Can permission='create_category' shouldThrow={true}><CategoriesIndex /></Can>} loader={firstLevelCategoriesLoader}/>
                     <Route path="category/create" element={<Can permission='create_category' shouldThrow={true}><CategoryCreate /></Can>} action={createCategory} />
-                    <Route path="category/:id/edit" element={<Can permission='edit_category' shouldThrow={true}><CategoryCreate /></Can>} loader={ ({ params }) => categoryLoader(params.id)} action={editBadge}/>
+                    <Route path="category/:id/edit" element={<Can permission='edit_category' shouldThrow={true}><CategoryCreate /></Can>} loader={ ({ params }) => categoryLoader(params.id)} action={editCategory}/>
                     <Route path="category/:id/destroy" action={destroyCategory}/>
+                     {/* courses */}
+                    <Route path="course" element={<Can permission='create_course' shouldThrow={true}><CoursesIndex /></Can>} loader={coursesLoader}/>
+                    <Route path="course/create" element={<Can permission='create_course' shouldThrow={true}><CourseCreate /></Can>} action={createCourse} />
+                    <Route path="course/:id/edit" element={<Can permission='edit_course' shouldThrow={true}><CourseCreate /></Can>} loader={ ({ params }) => courseLoader(params.id)} action={editCourse}/>
+                    <Route path="course/:id/destroy" action={destroyCourse}/>
                 </Route>
             </Route>
 

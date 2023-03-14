@@ -1,5 +1,6 @@
 import React, { TextareaHTMLAttributes } from "react"
 import useFormInputErrors from '../../hooks/useFormInputErrors';
+import FormInputLabel from './FormInputLabel';
 
 export type FormTextArea = {
     label?: string
@@ -15,11 +16,11 @@ function FormTextArea(props: FormTextArea & TextareaHTMLAttributes<HTMLTextAreaE
 
     return (
         <>
-            {props.label && <label htmlFor={newProps.name} className="block">{newProps.label}</label>}
+            <FormInputLabel htmlFor={newProps.name}>{newProps.label}</FormInputLabel>
             <textarea 
                 className={`
                     ${className??''}
-                    p-2 rounded-xl text-ec-gray-dark
+                    p-2 rounded-xl text-ec-gray-dark w-full h-40 max-h-80
                     disabled:cursor-not-allowed disabled:bg-ec-gray-light disabled:text-ec-gray-medium
                 `} 
                 ref={ref}

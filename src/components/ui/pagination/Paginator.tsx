@@ -5,13 +5,13 @@ import { RxDoubleArrowLeft, RxDoubleArrowRight } from 'react-icons/rx';
 import { RiArrowDropLeftLine, RiArrowDropRightLine } from 'react-icons/ri';
 import { useTranslation } from "react-i18next";
 
-export default function Paginator({paginatedData, className}: {paginatedData: PaginatedData<any>, className: string}) {
+export default function Paginator({paginatedData, className}: {paginatedData: PaginatedData<any>, className?: string}) {
     const {t} = useTranslation();
 
     const links = paginatedData.links.filter((link, i)=>i!==0 && i!==(paginatedData.links.length-1))
 
     return (
-        <div className={`${className} flex gap-2 items-center`}>
+        <div className={`${className??''} flex gap-2 items-center`}>
             
             {/* first page */}
             <Form>

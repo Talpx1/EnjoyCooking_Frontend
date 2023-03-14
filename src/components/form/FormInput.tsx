@@ -1,5 +1,6 @@
 import React, { InputHTMLAttributes } from "react"
 import useFormInputErrors from '../../hooks/useFormInputErrors';
+import FormInputLabel from './FormInputLabel';
 
 export type FormInput = {
     label?: string
@@ -15,7 +16,7 @@ function FormInput(props: FormInput & InputHTMLAttributes<HTMLInputElement>, ref
 
     return (
         <>
-            {props.label && <label htmlFor={newProps.name} className="block">{newProps.label}</label>}
+            <FormInputLabel htmlFor={newProps.name}>{newProps.label}</FormInputLabel>
             <input 
                 className={`
                     ${className??''}
