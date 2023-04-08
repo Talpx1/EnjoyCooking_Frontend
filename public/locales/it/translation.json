@@ -54,5 +54,12 @@
     "no_courses": "Nessuna Portata!",
     "slug": "Slug",
     "warn_manually_handle_translations": "Attenzione: questi contenuti necessitano di traduzioni, ma siccome queste non possono essere automatizzate, si dovranno aggiungere manualmente nel core o nei files di traduzione. In caso di necessità contattare un amministratore.",
-    "warn_core_references": "Attenzione: questi contenuti sono auto-generati e referenziati dal core. Se eliminati o modificati, potrebbero verificarsi errori. Eseguire cambiamenti solo se si sa cosa si sta facendo. In caso di necessità contattare un amministratore."
+    "warn_core_references": "Attenzione: questi contenuti sono auto-generati e referenziati dal core. Se eliminati o modificati, potrebbero verificarsi errori. Eseguire cambiamenti solo se si sa cosa si sta facendo. In caso di necessità contattare un amministratore.",
+    "difficulty_levels": "Livelli di Difficoltà",
+    "edit_difficulty_level": "Modifica Livello di Difficoltà",
+    "create_difficulty_level": "Crea Livello di Difficoltà",
+    "save_difficulty_level": "Salva Livello di Difficoltà",
+    "difficulty_level_confirm_delete": "Sei sicuro di voler eliminare il livello di difficoltà \"{{name}}\"?",
+    "add_difficulty_level": "Aggiungi Livello di Difficoltà",
+    "no_difficulty_level": "Nessun Livello di Difficoltà"
 }

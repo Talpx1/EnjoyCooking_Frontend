@@ -5,6 +5,7 @@ import { MdDashboard, MdCategory } from 'react-icons/md';
 import { BsFillAwardFill } from 'react-icons/bs';
 import { GiHotMeal } from 'react-icons/gi';
 import { HiIdentification } from 'react-icons/hi';
+import { AiFillDashboard } from 'react-icons/ai';
 
 export default function SideMenu() {
 
@@ -35,6 +36,11 @@ export default function SideMenu() {
                     {/* categories */}
                     <Can permission="edit_course">
                         <li><NavLink to="course" icon={<GiHotMeal />}>{t('courses')}</NavLink></li>
+                    </Can>
+
+                    {/* categories */}
+                    <Can permission="edit_difficulty_level">
+                        <li><NavLink to="difficulty_level" icon={<AiFillDashboard />}>{t('difficulty_levels')}</NavLink></li>
                     </Can>                    
                 </ul>
             </nav>

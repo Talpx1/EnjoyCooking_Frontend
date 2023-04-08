@@ -10,6 +10,8 @@ export default function Paginator({paginatedData, className}: {paginatedData: Pa
 
     const links = paginatedData.links.filter((link, i)=>i!==0 && i!==(paginatedData.links.length-1))
 
+    if(paginatedData.last_page === 1) return null
+
     return (
         <div className={`${className??''} flex gap-2 items-center`}>
             

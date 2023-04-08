@@ -33,6 +33,12 @@ import CourseCreate from './pages/backoffice/course/create';
 import createCourse from './services/core/actions/course/createCourse';
 import editCourse from './services/core/actions/course/editCourse';
 import destroyCourse from './services/core/actions/course/destroyCourse';
+import DifficultyLevelIndex from './pages/backoffice/difficulty_level';
+import DifficultyLevelCreate from './pages/backoffice/difficulty_level/create';
+import { difficultyLevelLoader, difficultyLevelsLoader } from './services/core/loaders/difficulty_level';
+import createDifficultyLevel from './services/core/actions/difficulty_level/createDifficultyLevel';
+import editDifficultyLevel from './services/core/actions/difficulty_level/editDifficultyLevel';
+import destroyDifficultyLevel from './services/core/actions/difficulty_level/destroyDifficultyLevel';
 
 export const routes = (
     <>
@@ -61,6 +67,11 @@ export const routes = (
                     <Route path="course/create" element={<Can permission='create_course' shouldThrow={true}><CourseCreate /></Can>} action={createCourse} />
                     <Route path="course/:id/edit" element={<Can permission='edit_course' shouldThrow={true}><CourseCreate /></Can>} loader={ ({ params }) => courseLoader(params.id)} action={editCourse}/>
                     <Route path="course/:id/destroy" action={destroyCourse}/>
+                    {/* difficulty levels */}
+                    <Route path="difficulty_level" element={<Can permission='create_difficulty_level' shouldThrow={true}><DifficultyLevelIndex /></Can>} loader={difficultyLevelsLoader}/>
+                    <Route path="difficulty_level/create" element={<Can permission='create_difficulty_level' shouldThrow={true}><DifficultyLevelCreate /></Can>} action={createDifficultyLevel} />
+                    <Route path="difficulty_level/:id/edit" element={<Can permission='edit_difficulty_level' shouldThrow={true}><DifficultyLevelCreate /></Can>} loader={ ({ params }) => difficultyLevelLoader(params.id)} action={editDifficultyLevel}/>
+                    <Route path="difficulty_level/:id/destroy" action={destroyDifficultyLevel}/>
                 </Route>
             </Route>
 
