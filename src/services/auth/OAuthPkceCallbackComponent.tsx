@@ -43,7 +43,7 @@ export function OAuthPkceCallbackComponent() {
                 withAuth: true,
             });
             
-            setUser(JSON.parse(user));
+            setUser(user);
         };
 
         callback();

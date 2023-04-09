@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import { useRouteError } from "react-router-dom";
 import { useChangeTitle } from "../../../hooks/useChangeTitle";
 import PageTitle from "../../../components/ui/backoffice/PageTitle";
-import BackButton from "../../../components/ui/buttons/BackButton";
 
 export default function ErrorPage() {
     const error = useRouteError();
