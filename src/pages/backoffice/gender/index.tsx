@@ -27,7 +27,7 @@ export default function GenderIndex() {
             {/* actions */}
             <div className="flex gap-1">
                 <Link to={`${placeholderRecord.id}/edit`}><Button type='button' title={t('edit')}><FaEdit /></Button></Link>
-                <DeleteButton entityId={placeholderRecord.id} confirmText={t(`gender_confirm_delete`, { title: placeholderRecord.name })} title={t('delete')}><FaTrash /></DeleteButton>
+                <DeleteButton entityId={placeholderRecord.id} confirmText={t(`gender_confirm_delete`, { name: placeholderRecord.name })} title={t('delete')}><FaTrash /></DeleteButton>
             </div>
         </>
     )
