@@ -61,5 +61,6 @@
     "save_difficulty_level": "Save Difficulty Level",
     "difficulty_level_confirm_delete": "Are you sure you want to delete the difficulty level \"{{name}}\"?",
     "add_difficulty_level": "Add Difficulty Level",
-    "no_difficulty_level": "No Difficulty Levels yet!"
+    "no_difficulty_level": "No Difficulty Levels yet!",
+    "no_categories": "No Categories yet!"
 }

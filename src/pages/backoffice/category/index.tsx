@@ -39,7 +39,11 @@ export default function CategoriesIndex() {
             <PageTitle>{t('categories')}</PageTitle>
 
                 <div className="flex flex-col gap-y-5">
-                    {state.map((category: Category) => <CategoryRow key={category.id} category={category} dispatch={dispatch} />)}
+                    {
+                        state.length === 0 ?
+                        <div className='text-center w-full'>{t('no_categories')}</div> :
+                        state.map((category: Category) => <CategoryRow key={category.id} category={category} dispatch={dispatch} />)}
+                    
                 </div>
 
             <Paginator paginatedData={categories} className='mt-8'></Paginator>
