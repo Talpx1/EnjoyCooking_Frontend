@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import Can from "../../../conditionals/Can";
 import NavLink from "../../../ui/backoffice/NavLink";
 import { MdDashboard, MdCategory } from 'react-icons/md';
-import { BsFillAwardFill } from 'react-icons/bs';
+import { BsFillAwardFill, BsGenderAmbiguous } from 'react-icons/bs';
 import { GiHotMeal } from 'react-icons/gi';
 import { HiIdentification } from 'react-icons/hi';
 import { AiFillDashboard } from 'react-icons/ai';
@@ -41,6 +41,11 @@ export default function SideMenu() {
                     {/* categories */}
                     <Can permission="edit_difficulty_level">
                         <li><NavLink to="difficulty_level" icon={<AiFillDashboard />}>{t('difficulty_levels')}</NavLink></li>
+                    </Can>
+
+                    {/* categories */}
+                    <Can permission="edit_gender">
+                        <li><NavLink to="gender" icon={<BsGenderAmbiguous />}>{t('genders')}</NavLink></li>
                     </Can>                    
                 </ul>
             </nav>

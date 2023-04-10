@@ -39,6 +39,12 @@ import { difficultyLevelLoader, difficultyLevelsLoader } from './services/core/l
 import createDifficultyLevel from './services/core/actions/difficulty_level/createDifficultyLevel';
 import editDifficultyLevel from './services/core/actions/difficulty_level/editDifficultyLevel';
 import destroyDifficultyLevel from './services/core/actions/difficulty_level/destroyDifficultyLevel';
+import GenderIndex from './pages/backoffice/gender';
+import { genderLoader, gendersLoader } from './services/core/loaders/gender';
+import GenderCreate from './pages/backoffice/gender/create';
+import createGender from './services/core/actions/gender/createGender';
+import editGender from './services/core/actions/gender/editGender';
+import destroyGender from './services/core/actions/gender/destroyGenderl';
 
 export const routes = (
     <>
@@ -72,6 +78,11 @@ export const routes = (
                     <Route path="difficulty_level/create" element={<Can permission='create_difficulty_level' shouldThrow={true}><DifficultyLevelCreate /></Can>} action={createDifficultyLevel} />
                     <Route path="difficulty_level/:id/edit" element={<Can permission='edit_difficulty_level' shouldThrow={true}><DifficultyLevelCreate /></Can>} loader={ ({ params }) => difficultyLevelLoader(params.id)} action={editDifficultyLevel}/>
                     <Route path="difficulty_level/:id/destroy" action={destroyDifficultyLevel}/>
+                    {/* genders */}
+                    <Route path="gender" element={<Can permission='create_gender' shouldThrow={true}><GenderIndex /></Can>} loader={gendersLoader}/>
+                    <Route path="gender/create" element={<Can permission='create_gender' shouldThrow={true}><GenderCreate /></Can>} action={createGender} />
+                    <Route path="gender/:id/edit" element={<Can permission='edit_gender' shouldThrow={true}><GenderCreate /></Can>} loader={ ({ params }) => genderLoader(params.id)} action={editGender}/>
+                    <Route path="gender/:id/destroy" action={destroyGender}/>
                 </Route>
             </Route>
 

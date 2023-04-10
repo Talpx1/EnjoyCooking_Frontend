@@ -62,5 +62,12 @@
     "difficulty_level_confirm_delete": "Are you sure you want to delete the difficulty level \"{{name}}\"?",
     "add_difficulty_level": "Add Difficulty Level",
     "no_difficulty_level": "No Difficulty Levels yet!",
-    "no_categories": "No Categories yet!"
+    "no_categories": "No Categories yet!",
+    "genders": "Genders",
+    "edit_gender": "Edit Gender",
+    "create_gender": "Create Gender",
+    "save_gender": "Save Gender",
+    "gender_confirm_delete": "Are you sure you want to delete the gender \"{{name}}\"?",
+    "add_gender": "Add Gender",
+    "no_gender": "No Genders yet!"
 }
